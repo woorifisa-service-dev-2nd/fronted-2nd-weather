@@ -1,0 +1,22 @@
+{
+  "name": "weater",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint './public/**/*.{ts,tsx,js,jsx}'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^8.54.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "express": "^4.18.2",
+    "reqest": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^9.0.0"
+  }
+}
