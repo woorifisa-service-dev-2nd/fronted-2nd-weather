@@ -16,10 +16,10 @@ app.use(express.static('public'));
 // req -> request - HTTP Request 객체
 // res -> response - HTTP Response 객체(응답 시 사용할 데이터, 부가 정보를 담을 때 사용)
 app.get('/', (req, res) => {
-  res.send('Hello World');
-  res.end();
+  // res.send('Hello World');
+  // res.end();
 
-  //   res.sendFile('index.html');
+  res.sendFile('index.html');
 });
 
 app.get('/weather', (req, res) => {
@@ -79,46 +79,47 @@ app.get('/weather', (req, res) => {
       //   console.log(weatherData);
 
       const info = [];
+      const infoObj = {};
       weatherData.item.forEach((v) => {
         switch (v.category) {
           case 'POP':
-            info.push({ 강수확률: v.fcstValue });
+            infoObj['강수확률'] = v.fcstValue;
             break;
           case 'PTY':
-            info.push({ 강수형태: v.fcstValue });
+            infoObj['강수형태'] = v.fcstValue;
             break;
           case 'PCP':
-            info.push({ '1시간 강수량': v.fcstValue });
+            infoObj['1시간 강수량'] = v.fcstValue;
             break;
           case 'REH':
-            info.push({ 습도: v.fcstValue });
+            infoObj['습도'] = v.fcstValue;
             break;
           case 'SNO':
-            info.push({ '1시간 신적설': v.fcstValue });
+            infoObj['1시간 신적설'] = v.fcstValue;
             break;
           case 'SKY':
-            info.push({ '하늘 상태': v.fcstValue });
+            infoObj['하늘 상태'] = v.fcstValue;
             break;
           case 'TMP':
-            info.push({ '1시간 기온': v.fcstValue });
+            infoObj['1시간 기온'] = v.fcstValue;
             break;
           case 'TMN':
-            info.push({ '일 최저 기온': v.fcstValue });
+            infoObj['일 최저 기온'] = v.fcstValue;
             break;
           case 'UUU':
-            info.push({ '풍속(동서성문)': v.fcstValue });
+            infoObj['풍속(동서성문)'] = v.fcstValue;
             break;
           case 'VVV':
-            info.push({ '풍속(남북성분': v.fcstValue });
+            infoObj['풍속(남북성분)'] = v.fcstValue;
             break;
           case 'WAV':
-            info.push({ 파고: v.fcstValue });
+            infoObj['파고'] = v.fcstValue;
             break;
           case 'VEC':
-            info.push({ 풍향: v.fcstValue });
+            infoObj['풍향'] = v.fcstValue;
             break;
           case 'WSD':
-            info.push({ 풍속: v.fcstValue });
+            infoObj['풍속'] = v.fcstValue;
             break;
           default:
             break;
@@ -128,7 +129,7 @@ app.get('/weather', (req, res) => {
       const data = {
         day: parms.data,
         time: parms.time,
-        info,
+        info: infoObj,
       };
       res.end(JSON.stringify({ ...data }));
     } else {
