@@ -1,12 +1,16 @@
 module.exports = {
   extends: ['airbnb', 'prettier'],
   rules: {
-    // "linebreak-style": 0,
     'no-console': 'off',
-  },
-  'import/resolver': {
-    node: {
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    },
+    'no-undef': 'off',
+    'prefer-destructuring': 'off',
   },
 };
+
+// no-console = 콘솔 사용을 허용하지 않음
+
+// no-undef = 선언되지 않는 변수의 사용을 허용 하지 않음
+// document에 접근 할수 없어서 off 로 설정
+
+// prefer-destructuring = 배열 파괴를 허용하지않음
+// array[index] , obj[key] 로 접근하여 값읗 바로 주기위해 off 로설 정
