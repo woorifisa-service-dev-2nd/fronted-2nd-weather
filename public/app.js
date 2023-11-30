@@ -1,6 +1,6 @@
 
 //각 textarea는 온도, 강수확률, 옷추천 문구부분
-const [resultText, rainPercent, recommendCloth] = document.getElementsByTagName('textarea');
+const [temperature, rainPercent, recommendCloth] = document.getElementsByTagName('textarea');
 const sky = document.getElementById('sky');
 const cloth = document.getElementById('cloth');
 //$img = document.querySelector(".img-container > img");
@@ -8,7 +8,7 @@ const cloth = document.getElementById('cloth');
 
 
 
-const resultCloth = 
+    const resultCloth = 
     ["28℃ 이상 날씨입니다 옆에 이미지를 참고해주세요",
     "27℃ ~ 23℃ 날씨입니다 옆에 이미지를 참고해주세요",
     "22℃ ~ 20℃ 날씨입니다 옆에 이미지를 참고해주세요",
@@ -64,22 +64,22 @@ const resultCloth =
         
     }  
     
-    const skyStatus = (sValue) => { //sValue - 하늘상태 수치 , 하늘 상태에 따른 상단 이미지 변경
-        if(sValue>=0 && sValue<=5){
+    const setSkyStatus = (skyValue) => { //skyValue - 하늘상태 수치 , 하늘 상태에 따른 상단 이미지 변경
+        if(skyValue>=0 && skyValue<=5){
             //맑음 이미지로 표시하는 코드
             sky.src = "https://cdn.pixabay.com/animation/2023/11/11/18/15/18-15-55-407_512.gif"; //상황에 맞는 이미지 넣으면 가능
         }
-        else if(sValue>5 && sValue<=8){
+        else if(skyValue>5 && skyValue<=8){
             //구름 많음 이미지로 표시하는 코드
             sky.src = `https://cdn.pixabay.com/animation/2023/11/11/18/15/18-15-55-407_512.gif`;
         }
-        else if(sValue>8 && sValue<=10){
+        else if(skyValue>8 && skyValue<=10){
             //흐림 이미지로 표시하는 코드
             sky.src = "https://cdn.pixabay.com/animation/2023/11/11/18/15/18-15-55-407_512.gif"; //상황에 맞는 이미지 넣으면 가능
         }
     }
 
-const weatherText = () =>{
+const getWeatherData = () =>{
 
     
         
@@ -98,11 +98,11 @@ const weatherText = () =>{
             .then(data => {
                 console.log(data);
                 
-                resultText.textContent = ` ${data.info["1시간 기온"]}℃`;
+                temperature.textContent = ` ${data.info["1시간 기온"]}℃`;
                 rainPercent.textContent = `${data.info["강수확률"]}%`;
 
                 chooseCloth(+data.info["1시간 기온"]);
-                skyStatus(+data.info["하늘 상태"])
+                setSkyStatus(+data.info["하늘 상태"])
 
             })
             .catch(error => console.error(error));
@@ -115,4 +115,5 @@ const weatherText = () =>{
 
 
 
-weatherText();
+
+getWeatherData();
