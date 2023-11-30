@@ -22,35 +22,42 @@ app.get('/', (req, res) => {
   //   res.sendFile('index.html');
 });
 
-app.get('/weater', (req, res) => {
+app.get('/weather', (req, res) => {
+  const parms = {
+    data: 20231130,
+    time: '1000',
+    nx: 37,
+    ny: 126,
+  };
+
+  /**
+   * 년월일(YYYYMMDD)
+   */
+  const baseDate = parms.data;
+  const baseTime = '0500';
   /**
    * 공공데이터포털에서 발급받은 인증키
    */
-  const serviceKey = process.env.api;
+  const serviceKey = process.env.API;
   /**
    * 한 페이지 결과 수
    * Default: 10
    */
-  const numOfRows = 50;
+  const numOfRows = 12;
   /**
    * 페이지 번호
    * Default: 1
    */
-  const pageNo = 1;
+  const page = +parms.time - +baseTime;
+  const pageNo = page / 100;
   /**
    * 요청자료형식(XML/JSON)
    * Default: XML
    */
   const dataType = 'JSON';
 
-  /**
-   * 년월일(YYYYMMDD)
-   */
-  const baseDate = 20231129;
-  const baseTime = '0500';
-
-  const nx = 37;
-  const ny = 126;
+  const nx = parms.nx;
+  const ny = parms.ny;
   const serviceurl =
     'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst';
 
@@ -68,7 +75,62 @@ app.get('/weater', (req, res) => {
     if (!error && response.statusCode === 200) {
       res.writeHead(200, { 'Content-Type': 'text/json;charset=utf-8' });
 
-      res.end(body);
+      const weatherData = JSON.parse(body).response.body.items;
+      //   console.log(weatherData);
+
+      const info = [];
+      weatherData.item.forEach((v) => {
+        switch (v.category) {
+          case 'POP':
+            info.push({ 강수확률: v.fcstValue });
+            break;
+          case 'PTY':
+            info.push({ 강수형태: v.fcstValue });
+            break;
+          case 'PCP':
+            info.push({ '1시간 강수량': v.fcstValue });
+            break;
+          case 'REH':
+            info.push({ 습도: v.fcstValue });
+            break;
+          case 'SNO':
+            info.push({ '1시간 신적설': v.fcstValue });
+            break;
+          case 'SKY':
+            info.push({ '하늘 상태': v.fcstValue });
+            break;
+          case 'TMP':
+            info.push({ '1시간 기온': v.fcstValue });
+            break;
+          case 'TMN':
+            info.push({ '일 최저 기온': v.fcstValue });
+            break;
+          case 'UUU':
+            info.push({ '풍속(동서성문)': v.fcstValue });
+            break;
+          case 'VVV':
+            info.push({ '풍속(남북성분': v.fcstValue });
+            break;
+          case 'WAV':
+            info.push({ 파고: v.fcstValue });
+            break;
+          case 'VEC':
+            info.push({ 풍향: v.fcstValue });
+            break;
+          case 'WSD':
+            info.push({ 풍속: v.fcstValue });
+            break;
+          default:
+            break;
+        }
+      });
+
+      const data = {
+        day: parms.data,
+        time: parms.time,
+        info,
+      };
+      res.end(JSON.stringify({ ...data }));
     } else {
       res.status(response.statusCode).end();
       console.log(`error = ${response.statusCode}`);
