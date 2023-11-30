@@ -1,9 +1,10 @@
 module.exports = {
   extends: ['airbnb', 'prettier'],
   rules: {
-    'no-console': 'off',
-    'no-undef': 'off',
+    'no-console': 'off', 
+    'no-undef': 'off', 
     'prefer-destructuring': 'off',
+    "spaced-comment":"off"
   },
 };
 
