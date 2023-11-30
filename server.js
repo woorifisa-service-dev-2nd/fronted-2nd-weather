@@ -8,24 +8,24 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
-// get-> HTTP GET method,
-// '/' -> Root 경로로 요청
-// function~ -> 콜백
-
-// http://localhost:3000'/' 경로로 요청 시 동작할 핸들러(handler)
-// req -> request - HTTP Request 객체
-// res -> response - HTTP Response 객체(응답 시 사용할 데이터, 부가 정보를 담을 때 사용)
 app.get('/', (req, res) => {
-  // res.send('Hello World');
-  // res.end();
-
   res.sendFile('index.html');
 });
 
-app.post('/weather', (req, res) => {
+app.get('/weather', (req, res) => {
+  const temp = new Date();
+  // 한국 시간 ( KST )을 구하기 위해서는 UTC 시간에 9시간을 더해주면된다
+  temp.setHours(temp.getHours() + 9);
+
+  const [day, time] = temp.toISOString().split('T');
+  const times = time.split(':');
+
+  const requestDay = +day.replaceAll('-', '');
+  const requestTime = times[0] + times[1];
+
   const parms = {
-    data: 20231130,
-    time: '1000',
+    data: requestDay,
+    time: requestTime,
     nx: 37,
     ny: 126,
   };
@@ -73,12 +73,9 @@ app.post('/weather', (req, res) => {
   //   fetch(url).then(res => res.json()).then(data => console.log(data))
   request.get(options, (error, response, body) => {
     if (!error && response.statusCode === 200) {
-      res.writeHead(200, { 'Content-Type': 'text/json;charset=utf-8' });
-
       const weatherData = JSON.parse(body).response.body.items;
       //   console.log(weatherData);
 
-      const info = [];
       const infoObj = {};
       weatherData.item.forEach((v) => {
         switch (v.category) {
@@ -131,7 +128,11 @@ app.post('/weather', (req, res) => {
         time: parms.time,
         info: infoObj,
       };
-      res.end(JSON.stringify({ ...data }));
+
+      // res.writeHead(200, { 'Content-Type': 'text/json;charset=utf-8' });
+      // res.end(JSON.stringify(data))
+
+      res.send(JSON.stringify(data));
     } else {
       res.status(response.statusCode).end();
       console.log(`error = ${response.statusCode}`);
