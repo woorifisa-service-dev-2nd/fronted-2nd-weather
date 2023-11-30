@@ -1,5 +1,8 @@
+require('dotenv').config();
+
 const express = require('express');
 const request = require('request');
+
 const app = express();
 
 app.use(express.json());
@@ -14,6 +17,7 @@ app.use(express.static('public'));
 // res -> response - HTTP Response 객체(응답 시 사용할 데이터, 부가 정보를 담을 때 사용)
 app.get('/', (req, res) => {
   res.send('Hello World');
+  res.end();
 
   //   res.sendFile('index.html');
 });
@@ -22,7 +26,7 @@ app.get('/weater', (req, res) => {
   /**
    * 공공데이터포털에서 발급받은 인증키
    */
-  const serviceKey = '';
+  const serviceKey = process.env.api;
   /**
    * 한 페이지 결과 수
    * Default: 10
