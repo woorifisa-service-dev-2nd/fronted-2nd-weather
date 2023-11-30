@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
   res.sendFile('index.html');
 });
 
-app.get('/weather', (req, res) => {
+app.post('/weather', (req, res) => {
   const parms = {
     data: 20231130,
     time: '1000',
