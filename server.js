@@ -3,13 +3,14 @@ require('dotenv').config();
 const express = require('express');
 const request = require('request');
 
-const app = express();
+const app = express(); 
+//npm expresss 검색해보기
 
-app.use(express.json());
+app.use(express.json()); //get하기전에 직렬화을 하겠다. 
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.sendFile('index.html');
+  res.sendFile('index.html'); //이것과 /weather의 차이는 index.html실행하냐 안 하고 바로 server에서 하냐의 차이이다.
 });
 
 app.get('/weather', (req, res) => {

@@ -5,22 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>오늘의 날씨</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gamja+Flower&display=swap" rel="stylesheet">
     <script defer src="app.js"></script>
   </head>
 
 
   <body>
-    <div>
-    <p id="">오늘의 날씨</p>
-    <img id="sky"   src="https://cdn.pixabay.com/animation/2022/07/28/11/53/11-53-26-148_512.gif" alt="">
-    <p>기온</p>
-    <textarea name="resultText" id="temperature" cols="30" rows="2"></textarea>
-    <p>강수확률</p>
-    <textarea name="rainPercent" id="rainPercent" cols="30" rows="2"></textarea>
-    <p>옷차림 추천</p>
-    <textarea name="recommendCloth" id="recommendCloth" cols="30" rows="2"></textarea>
-    <img id="cloth" src="./image/28도이상.PNG" alt="">
-    </div>
+      <img id="background" src="" alt="">
+      <div id="shape">
+        <img id="load" src="https://i.pinimg.com/originals/8e/e2/12/8ee212dac057d412972e0c8cc164deee.gif" alt="">
+      <div>
+        <div>
+          <h1>오늘의 날씨</h1>
+          <div>
+            <img id="sky" src="" alt="">
+            
+          </div>
+        </div>
+      
+        <div>
+          <p >기온</p>
+          <textarea name="resultText" id="resultText" cols="20" rows="1"></textarea>
+        </div>
+        <div>
+          <p >강수확률</p>
+          <textarea name="rainPercent" id="rainPercent" cols="20" rows="1"></textarea>
+        </div>
+          <div>
+            <p>옷차림 추천</p>
+            <textarea name="recommendCloth" id="recommendCloth" cols="25" rows="2"></textarea>
+          </div>
+      </div>
+      
+      <div id="imagemove">
+        <img id="bug" src="https://www.hushwish.com/wp-content/uploads/2018/11/emo_cashbee_012.gif" alt="">
+        <img id="cloth" src="" alt="">
+      </div>
+        </div>
+    
 
   </body>
 </html>
