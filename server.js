@@ -24,7 +24,7 @@ app.get('/weather', (req, res) => {
   const requestDay = +day.replaceAll('-', '');
   const requestTime = times[0] + times[1];
 
-  const parms = {
+  const parms = { // 요청 날짜와, 요청 시간, 상암동의 좌표를 나타냄
     data: requestDay,
     time: requestTime,
     nx: 37,

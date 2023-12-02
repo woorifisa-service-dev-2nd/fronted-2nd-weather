@@ -61,8 +61,6 @@ const load = document.getElementById('load');
     
         else
         console.log('error');
-    
-    
         
     }  
     
