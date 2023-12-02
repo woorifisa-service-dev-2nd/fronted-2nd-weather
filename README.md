@@ -28,16 +28,13 @@
 - css, js 활용 하여 문서 꾸미기
 
 # 4. 도메인 용어 정의
-- textarea
--> temperature: 온도, rainPercent: 강수확률, recommendCloth: 옷추천 문구
-- chooseCloth()
--> 옷차림 추천해주는 부분, tem = 1시간 기온 데이터
-- setSkyStatus()
--> skyValue - 하늘상태 수치 , 하늘 상태에 따른 상단 이미지 변경
-- weatherText()
-getWeatherData
--> 날씨 공공 데이터를 가져와 전반적인 기능을 구현하는 코드 부분
-
+| 도메인 | 설명 |
+| --------- | --------------------------------------------------------------- |
+| textarea |  temperature: 온도, rainPercent: 강수확률, recommendCloth: 옷추천 문구 |
+| chooseCloth() | 옷차림 추천해주는 부분, tem = 1시간 기온 데이터 |
+| setSkyStatus() | skyValue - 하늘상태 수치 , 하늘 상태에 따른 상단 이미지 변경 |
+| weatherText() getWeatherData | 날씨 공공 데이터를 가져와 전반적인 기능을 구현하는 코드 부분 |
+ 
 # 5. 핵심 기능 설명 및 구현 방법
 - 기상청 API 데이터를 받아올시 배열 마다 카테고리별로 항목이 구분 되어 있어 배열을 순회하며
 데이터를 추출 하여서 프로젝트에서 사용하기 편하게 데이터를 정제함
