@@ -3,7 +3,7 @@
 
 주제 : Open API 활용 웹 서비스
 
-# ☀️ 오늘의 날씨를 통해 적절한 옷차림 추천 사이트 ⛈️
+# ☀️ 오늘의 날씨와 적절한 옷차림 추천 사이트 ⛈️
 <img src="public/image/load.png" width="500" height="400"/>  <img src="public/image/play.png" width="500" height="400"/>
 
 # 1.프로젝트 및 팀(팀원) 소개 👨‍💻 
