@@ -4,7 +4,15 @@ module.exports = {
     'no-console': 'off', 
     'no-undef': 'off', 
     'prefer-destructuring': 'off',
-    "spaced-comment":"off"
+    "spaced-comment":"off",
+    'no-use-before-define': 'off',
+    'import/prefer-default-export': 'off',
+    'import/extensions': 'off',
+    'dot-notation': 'off',
+    'no-unused-vars': 'off',
+    'no-else-return': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'one-var': 'off'
   },
 };
 

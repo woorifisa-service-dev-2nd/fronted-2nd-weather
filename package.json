@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
+    "test": "vitest --run --reporter verbose",
+    "lint": "eslint './public/**/*.{ts,tsx,js,jsx}'",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,7 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
-    "eslint-config-prettier": "^9.0.0"
+    "eslint-config-prettier": "^9.0.0",
+    "vitest": "^1.0.1"
   }
 }
